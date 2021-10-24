@@ -21,6 +21,7 @@ public:
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
 
     void push_back(const Room &room);
+    void erase(SizeType idx);
     void setRoom(RoomTable::SizeType idx, Room room);
     void save(QDataStream &ost) const;
     SizeType load(QDataStream &ist);

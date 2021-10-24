@@ -7,10 +7,7 @@ bookingRoom::bookingRoom(QWidget *parent) :
     ui(new Ui::bookingRoom)
 {
     ui->setupUi(this);
-    setWindowFlags(Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint);
-    ui->sellingEdit->setDate(QDate::currentDate());
-    ui->releaseEdit->setDate(QDate::currentDate());
-    ui->releaseEdit->setDate(ui->releaseEdit->date().addDays(1));
+    setFixedSize(400, 184);
 }
 
 bookingRoom::~bookingRoom()
@@ -24,13 +21,27 @@ void bookingRoom::setRoom(Room *room)
     ui->priceEdit->setText(QString("%1").arg(r->getPrice()));
 }
 
+void bookingRoom::setUser(User *user)
+{
+    u = user;
+}
+
+void bookingRoom::setBkdroom(std::vector<BookedRoom> *bkdr)
+{
+    bkdRoom = bkdr;
+
+    ui->sellingEdit->setDate(QDate::currentDate());
+    ui->releaseEdit->setDate(QDate::currentDate());
+    ui->releaseEdit->setDate(ui->releaseEdit->date().addDays(1));
+}
+
 void bookingRoom::check_price()
 {
-    int count_days;
-    int price = r->getPrice();
-    int count_visit = 0;
-    if (ui->comboBox->currentIndex() != 0)
-        count_visit = (*vUsers)[ui->comboBox->currentIndex()-1].getVisit();
+    size_t count_days;
+    size_t price = r->getPrice();
+    size_t count_visit = 0;
+
+    count_visit = (*u).getVisit();
 
     QDate first = ui->sellingEdit->date();
     QDate second = ui->releaseEdit->date();
@@ -44,24 +55,6 @@ void bookingRoom::check_price()
     ui->priceEdit->setText(QString("%1").arg(count_days * price));
 }
 
-QString bookingRoom::addItemFunction(int index)
-{
-    QString text;
-    text = (*vUsers)[index].getSurname();
-    text = text + " " + (*vUsers)[index].getName()[0] + ".";
-    text = text + " " + (*vUsers)[index].getPatronymic()[0] + ".";
-    ui->comboBox->addItem(text);
-    return text;
-}
-
-void bookingRoom::setUsers(std::vector<User> *vU, int index)
-{
-    vUsers = vU;
-    if ((*vUsers)[index].getRole())
-        for (int i = 0; i < vUsers->size(); i++) addItemFunction(i);
-    else
-        addItemFunction(index);
-}
 void bookingRoom::accept()
 {
     QDate date_selling = ui->sellingEdit->date();
@@ -82,17 +75,14 @@ void bookingRoom::accept()
     int num = r->getNum();
     int capacity = r->getCapacity();
 
-
-    int ind = ui->comboBox->currentIndex();
-    if (ind == 0) return bookingRoom::reject();
     int count_capacity = 0;
 
-    for (int i = 0; i < vUsers->size(); i++)
-        if ((*vUsers)[i].getRoom() == num)
+    for (size_t i = 0; i < bkdRoom->size(); i++)
+        if ((*bkdRoom)[i].getRoom() == num)
         {
             count_capacity++;
             if (count_capacity == capacity)
-                if (((*vUsers)[i].getDateSettling() <= date_selling) && (date_selling < (*vUsers)[i].getDateRelease()))
+                if (((*bkdRoom)[i].getDateSettling() <= date_selling) && (date_selling < (*bkdRoom)[i].getDateRelease()))
                 {
                     QMessageBox::critical(this, "ERROR!", "This room not avaible in this day.\nChoise other day.");
                     return;
@@ -102,24 +92,25 @@ void bookingRoom::accept()
 
     r->setAvailable(++count_capacity < capacity);
 
-    (*vUsers)[ind-1].setRoom(num);
-    (*vUsers)[ind-1].addVisit();
-    (*vUsers)[ind-1].setDateSettling(date_selling.day(), date_selling.month(), date_selling.year());
-    (*vUsers)[ind-1].setDateRelease(date_release.day(), date_release.month(), date_release.year());
+    (*u).addVisit();
+
+    size_t i = 0;
+    for (i = 0; i < bkdRoom->size(); ++i)
+    {
+        if ((*u).getSeries() == (*bkdRoom)[i].getSeries())
+            break;
+    }
+
+    (*bkdRoom)[i].setRoom(num);
+    (*bkdRoom)[i].setDateSettling(date_selling.day(), date_selling.month(), date_selling.year());
+    (*bkdRoom)[i].setDateRelease(date_release.day(), date_release.month(), date_release.year());
 
     return QDialog::accept();
-}
-
-void bookingRoom::on_comboBox_currentIndexChanged(int index)
-{
-    ui->sellingEdit->setEnabled(index != 0);
-    ui->releaseEdit->setEnabled(index != 0);
 }
 
 void bookingRoom::on_sellingEdit_dateChanged(const QDate &date)
 {
     ui->releaseEdit->setDate(ui->sellingEdit->date().addDays(1));
-
     check_price();
 }
 

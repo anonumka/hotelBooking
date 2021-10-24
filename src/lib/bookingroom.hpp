@@ -4,6 +4,7 @@
 #include <QDialog>
 #include "room.hpp"
 #include "user.hpp"
+#include "bookedroom.hpp"
 
 namespace Ui {
 class bookingRoom;
@@ -18,13 +19,12 @@ public:
     ~bookingRoom();
     QString addItemFunction(int index);
     void setRoom(Room *room);
-    void setUsers(std::vector<User> *vU, int index);
+    void setUser(User *user);
+    void setBkdroom(std::vector<BookedRoom> *bkdr);
     void check_price();
 
 private slots:
     void accept();
-
-    void on_comboBox_currentIndexChanged(int index);
 
     void on_sellingEdit_dateChanged(const QDate &date);
 
@@ -33,7 +33,8 @@ private slots:
 private:
     Ui::bookingRoom *ui;
     Room *r;
-    std::vector<User> *vUsers;
+    User *u;
+    std::vector<BookedRoom> *bkdRoom;
 };
 
 #endif // BOOKINGROOM_HPP

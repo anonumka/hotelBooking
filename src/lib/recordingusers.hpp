@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "user.hpp"
+#include "bookedroom.hpp"
 
 namespace Ui {
 class RecordingUsers;
@@ -16,6 +17,7 @@ public:
     explicit RecordingUsers(QWidget *parent = nullptr);
     ~RecordingUsers();
     void setUser(User *u);
+    void setbkdRoom(BookedRoom *bkdr);
 
 private slots:
     void accept();
@@ -23,6 +25,7 @@ private slots:
 private:
     Ui::RecordingUsers *ui;
     User *user;
+    BookedRoom *bkd;
 };
 
 #endif // RECORDINGUSERS_HPP

@@ -8,7 +8,7 @@ auth::auth(QWidget *parent) :
     ui(new Ui::auth)
 {
     ui->setupUi(this);
-    setWindowFlags(Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint);
+    setFixedSize(400, 300);
 }
 
 auth::~auth()
@@ -22,22 +22,31 @@ void auth::setUsers(std::vector<User> *vU)
 }
 void auth::accept()
 {
-    QString series = ui->lineEdit->text(); int index = -1;
-    for (int i = 0; i < vUsers->size(); i++)
-        if ((*vUsers)[i].getSeries() == series) index = i;
+    QString surname = ui->lineEdit->text();
+    QString series = ui->lineEdit_2->text(); int index = -1;
 
-    if (series.isEmpty())
+    for (size_t i = 0; i < vUsers->size(); i++)
+        if ( (vUsers->at(i).getSeries() == series) && (vUsers->at(i).getSurname() == surname)) index = i;
+
+    if (surname.isEmpty())
+    {
+        QMessageBox::critical(this, "Hotel Booking!", "Line with surname is empty.");
+        return;
+    }
+    else if (series.isEmpty())
     {
         QMessageBox::critical(this, "Hotel Booking!", "Line with series is empty.");
         return;
     }
     else if (index == -1)
     {
-        QMessageBox::critical(this, "Hotel Booking!", QString("User with %1 not finded.\nTry again.").arg(series));
-        ui->lineEdit->setText("");
+        QMessageBox::critical(this, "Hotel Booking!", QString("User not finded.\nTry again."));
+        ui->lineEdit_2->setText("");
         return;
     }
 
+    for (size_t i = 0; i < vUsers->size(); i++)
+        if ((*vUsers)[i].getSeries() == series) index = i;
 
     (*vUsers)[index].setSelect(true);
     return QDialog::accept();
@@ -47,8 +56,10 @@ void auth::accept()
 void auth::on_pushButton_clicked()
 {
     User u;
+    BookedRoom bkr;
     RecordingUsers reg;
     reg.setUser(&u);
+    reg.setbkdRoom(&bkr);
     reg.setWindowTitle("Hotel Booking");
     if (reg.exec() != RecordingUsers::Accepted) return;
     vUsers->push_back(u);

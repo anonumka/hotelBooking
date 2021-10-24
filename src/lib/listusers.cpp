@@ -7,7 +7,8 @@ ListUsers::ListUsers(QWidget *parent) :
     ui(new Ui::ListUsers)
 {
     ui->setupUi(this);
-    setWindowFlags(Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint);
+    setFixedSize(404, 283);
+    ui->countEdit->setValidator(new QIntValidator);
 }
 
 ListUsers::~ListUsers()
@@ -30,19 +31,53 @@ void ListUsers::setUsers(std::vector<User> *vU)
         text = text + " " + (*vUsers)[i].getPatronymic()[0] + ".";
         ui->comboBox->addItem(text);
     }
-    ui->checkBox->setEnabled(role == 2);
+    ui->roleBox->setEnabled(role == 2);
+}
+
+void ListUsers::setBkdRooms(std::vector<BookedRoom> *bkdr)
+{
+    bkdRoom = bkdr;
 }
 
 void ListUsers::on_comboBox_activated(int index)
 {
-    if (index == 0) return;
-    User u = (*vUsers)[index-1];
-    ui->seriesEdit->setText(u.getSeries());
-    ui->settlingEdit->setDate(u.getDateSettling());
-    ui->releaseEdit->setDate(u.getDateRelease());
-    ui->countEdit->setText(QString("%1").arg(u.getVisit()));
-    ui->roomEdit->setText(QString("%1").arg(u.getRoom()));
-    ui->checkBox->setChecked(u.getRole() == 1);
+    if (index == 0)
+    {
+        ui->seriesEdit->setText(0);
+        ui->countEdit->setText(0);
+        ui->roleBox->setCurrentIndex(0);
+
+        ui->settlingEdit->setDate(QDate::fromString("01.01.2000", "ddMMyyyy"));
+        ui->releaseEdit->setDate(QDate::fromString("01.01.2000", "ddMMyyyy"));
+        ui->roomEdit->setText(QString("%1").arg(0));
+    }
+    else
+    {
+        User u = (*vUsers)[index-1];
+        int j = -1;
+        for (size_t i = 0; i < bkdRoom->size(); i++)
+        {
+            if ((*bkdRoom)[i].getSeries() == u.getSeries())
+                j = i;
+        }
+
+        ui->seriesEdit->setText(u.getSeries());
+        ui->countEdit->setText(QString("%1").arg(u.getVisit()));
+        ui->roleBox->setCurrentIndex(u.getRole());
+
+        if (j != -1)
+        {
+            ui->settlingEdit->setDate((*bkdRoom)[j].getDateSettling());
+            ui->releaseEdit->setDate((*bkdRoom)[j].getDateRelease());
+            ui->roomEdit->setText(QString("%1").arg((*bkdRoom)[j].getRoom()));
+        }
+        else
+        {
+            ui->settlingEdit->setDate(QDate::fromString("01.01.2000", "ddMMyyyy"));
+            ui->releaseEdit->setDate(QDate::fromString("01.01.2000", "ddMMyyyy"));
+            ui->roomEdit->setText(QString("%1").arg(0));
+        }
+    }
 }
 
 void ListUsers::accept()
@@ -50,30 +85,18 @@ void ListUsers::accept()
     QDate date_selling = ui->settlingEdit->date();
     QDate date_release = ui->releaseEdit->date();
 
-    if (date_selling >= date_release)
-    {
-        QMessageBox::critical(this, "Hotel Booking", "Date Selling can't be later than Date Release.");
-        return;
-    }
-
-    if ((date_selling < QDate::currentDate()) || (date_release < QDate::currentDate()))
-    {
-        QMessageBox::critical(this, "Hotel Booking", "Date Selling or Date Release can't be < current date.");
-        return;
-    }
-
     int visit = QString(ui->countEdit->text()).toInt();
-    if (visit <= 0)
+    if (visit < 0)
     {
-        QMessageBox::critical(this, "Hotel Booking", "Count visit can't be <= 0.");
+        QMessageBox::critical(this, "Hotel Booking", "Count visit can't be < 0.");
         return;
     }
 
     int index = ui->comboBox->currentIndex();
-    (*vUsers)[index-1].setDateSettling(date_selling.day(), date_selling.month(),date_selling.year());
-    (*vUsers)[index-1].setDateRelease(date_release.day(), date_release.month(),date_release.year());
+    (*bkdRoom)[index-1].setDateSettling(date_selling.day(), date_selling.month(),date_selling.year());
+    (*bkdRoom)[index-1].setDateRelease(date_release.day(), date_release.month(),date_release.year());
     (*vUsers)[index-1].setVisit(visit);
-    (*vUsers)[index-1].setRole(ui->checkBox->isChecked());
+    (*vUsers)[index-1].setRole(ui->roleBox->currentIndex());
     return QDialog::accept();
 }
 

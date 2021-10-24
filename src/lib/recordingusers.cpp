@@ -1,13 +1,18 @@
+#include <QMessageBox>
+#include <QIntValidator>
+
 #include "recordingusers.hpp"
 #include "ui_recordingusers.h"
-#include <QMessageBox>
+#include "config.hpp"
 
 RecordingUsers::RecordingUsers(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::RecordingUsers)
 {
     ui->setupUi(this);
-    setWindowFlags(Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint);
+    setFixedSize(400, 282);
+
+    ui->seriesEdit->setValidator(new QIntValidator);
 }
 
 RecordingUsers::~RecordingUsers()
@@ -20,26 +25,31 @@ void RecordingUsers::setUser(User *u)
     user = u;
 }
 
+void RecordingUsers::setbkdRoom(BookedRoom *bkdr)
+{
+    bkd = bkdr;
+}
+
 void RecordingUsers::accept()
 {
     QString surname = ui->surnameEdit->text();
     if (surname.isEmpty())
     {
-        QMessageBox::critical(this, "Hotel Booking", "Line surname is empty");
+        QMessageBox::critical(this, config::applicationName, "Line surname is empty");
         return;
     }
 
     QString name = ui->nameEdit->text();
     if (name.isEmpty())
     {
-        QMessageBox::critical(this, "Hotel Booking", "Line name is empty");
+        QMessageBox::critical(this, config::applicationName, "Line name is empty");
         return;
     }
 
     QString patronymic = ui->patronymicEdit->text();
     if (patronymic.isEmpty())
     {
-        QMessageBox::critical(this, "Hotel Booking", "Line patronymic is empty");
+        QMessageBox::critical(this, config::applicationName, "Line patronymic is empty");
         return;
     }
 
@@ -47,19 +57,19 @@ void RecordingUsers::accept()
     series.toInt(&ok);
     if (series.isEmpty())
     {
-        QMessageBox::critical(this, "Hotel Booking", "Line series is empty");
+        QMessageBox::critical(this, config::applicationName, "Line series is empty");
         return;
     }
     else if (!ok)
     {
-        QMessageBox::critical(this, "Hotel Booking", "Line doesn't have a digit");
+        QMessageBox::critical(this, config::applicationName, "Line doesn't have a digit");
         return;
     }
 
     QString adress = ui->adressEdit->text();
     if (adress.isEmpty())
     {
-        QMessageBox::critical(this, "Hotel Booking", "Line adress is empty");
+        QMessageBox::critical(this, config::applicationName, "Line adress is empty");
         return;
     }
 
@@ -68,6 +78,8 @@ void RecordingUsers::accept()
     user->setPatronymic(patronymic);
     user->setSeries(series);
     user->setAdress(adress);
+
+    bkd->setSeries(series);
 
     return QDialog::accept();
 }

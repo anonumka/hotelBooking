@@ -117,6 +117,16 @@ void RoomTable::push_back(const Room &room)
     endInsertRows();
 }
 
+void RoomTable::erase(SizeType idx)
+{
+    beginRemoveRows(QModelIndex(),
+                    idx,
+                    idx
+                    );
+    vRoom.erase(std::next(vRoom.begin(), idx));
+    endRemoveRows();
+}
+
 void RoomTable::setRoom(RoomTable::SizeType idx, Room room)
 {
     // Присваиваем заметку

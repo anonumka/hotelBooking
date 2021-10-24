@@ -1,22 +1,29 @@
 #include <QMessageBox>
+#include <QIntValidator>
+
+#include "config.hpp"
 #include "editroom.hpp"
 #include "ui_editroom.h"
 
 
-CreateRoom::CreateRoom(QWidget *parent) :
+EditRoom::EditRoom(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::CreateRoom)
+    ui(new Ui::EditRoom)
 {
     ui->setupUi(this);
-    setWindowFlags(Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint);
+    setFixedSize(401, 243);
+
+    ui->numEdit->setValidator(new QIntValidator);
+    ui->capacityEdit->setValidator(new QIntValidator);
+    ui->priceEdit->setValidator(new QIntValidator);
 }
 
-CreateRoom::~CreateRoom()
+EditRoom::~EditRoom()
 {
     delete ui;
 }
 
-QString CreateRoom::comfortConvert(int comfort)
+QString EditRoom::comfortConvert(int comfort)
 {
     if (comfort == 0)
         return "Default";
@@ -26,7 +33,7 @@ QString CreateRoom::comfortConvert(int comfort)
         return "Luxe";
 }
 
-void CreateRoom::setRoom(Room *room)
+void EditRoom::setRoom(Room *room)
 {
     r = room;
 
@@ -38,12 +45,12 @@ void CreateRoom::setRoom(Room *room)
     ui->comfortEdit->setText(comfortConvert(comfort));
 }
 
-void CreateRoom::setTitle(QString title)
+void EditRoom::setTitle(QString title)
 {
     ui->label_8->setText(title);
 }
 
-void CreateRoom::accept()
+void EditRoom::accept()
 {
     int num = QString(ui->numEdit->text()).toInt();
     int capacity = QString(ui->capacityEdit->text()).toInt();
@@ -52,19 +59,19 @@ void CreateRoom::accept()
 
     if (num <= 0)
     {
-        QMessageBox::warning(this, "Hotel Booking", "Inccorect entered num\nNum can't be <= 0");
+        QMessageBox::warning(this, config::applicationName, "Inccorect entered num\nNum can't be <= 0");
         return;
     }
 
     if (capacity <= 0 || capacity >= 10)
     {
-        QMessageBox::warning(this, "Hotel Booking", "Inccorect entered capacity\nCapacity should be 1-9");
+        QMessageBox::warning(this, config::applicationName, "Inccorect entered capacity\nCapacity should be 1-9");
         return;
     }
 
     if (price <= 0)
     {
-        QMessageBox::warning(this, "Hotel Booking", "Inccorect entered price\nPrice can't be be < 0");
+        QMessageBox::warning(this, config::applicationName, "Inccorect entered price\nPrice can't be be < 0");
         return;
     }
 
@@ -74,7 +81,8 @@ void CreateRoom::accept()
     else if (comfort == "Luxe") r->setComfort(2);
     else
     {
-        QMessageBox::warning(this, "Hotel Booking", "Inccorect entered textLine \"Comfort\"");
+        QMessageBox::warning(this, config::applicationName, "Inccorect entered textLine \"Comfort\""
+                                                            "\nUse 'Luxe', 'Semiuxe', 'Default'");
         return;
     }
 

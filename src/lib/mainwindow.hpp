@@ -5,6 +5,7 @@
 #include "roomtable.hpp"
 #include "editroom.hpp"
 #include "recordingusers.hpp"
+#include "bookedroom.hpp"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -18,41 +19,48 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     int authorisation();
-    void save_vrooms();
-    void load_vrooms();
-    void save_vusers();
-    void load_vusers();
-    void save_users();
-    void load_users();
-    void displayTable(RoomTable *rt);
+
+    void listUsersBookedRoom(const QModelIndex &idx);
+    void setEnableActionsUi (int role);
+    void saveAllDataInRegistry();
+
+    void saveUsers();
+    void loadUsers();
+    void saveRoomsTable();
+    void loadRoomsTable();
+    void saveBookedRoom();
+    void loadBookedRoom();
+
+    void addUser(User u);
     void addRoom(const Room &r);
     void setvroom(RoomTable *vRooms);
 public slots:
     void updateDisplayedValues();
+
+    void importRoomsCSV();
+    void exportRoomsCSV();
+    void importUsersCSV();
+    void exportUsersCSV();
+    void importBookedRoomCSV();
+    void exportBookedRoomCSV();
+
     void create_room();
     void edit_room();
-    void list_user();
+    void del_room();
     void booking_room(const QModelIndex &idx);
 
-    void saveRoomsTable();
-    void openRoomsTable();
-    void saveUsers();
-    void openUsers();
-
-    void ImportRoomsCSV();
-    void ExportRoomsCSV();
-    void ImportUsersCSV();
-    void ExportUsersCSV();
-
-    void registerUser();
+    void list_user();
     void authUser();
+
     void windowAbout();
     void exit();
 
 private:
     Ui::MainWindow *ui;
+
     std::unique_ptr<RoomTable> vRoom;
     std::vector<User> vUsers;
+    std::vector<BookedRoom> bkdRoom;
 
     int role;
     int index;

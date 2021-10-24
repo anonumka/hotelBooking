@@ -4,6 +4,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 SOURCES += \
     auth.cpp \
+    bookedroom.cpp \
     bookingroom.cpp \
     editroom.cpp \
     listusers.cpp \
@@ -16,7 +17,9 @@ SOURCES += \
 
 HEADERS += \
     auth.hpp \
+    bookedroom.hpp \
     bookingroom.hpp \
+    config.hpp \
     editroom.hpp \
     listusers.hpp \
     mainwindow.hpp \
@@ -28,9 +31,13 @@ HEADERS += \
 FORMS += \
     auth.ui \
     bookingroom.ui \
+    dialogbkdroom.ui \
     editroom.ui \
     listusers.ui \
     mainwindow.ui \
     recordingusers.ui
 
 CONFIG += c++11
+
+RESOURCES += \
+    resources.qrc

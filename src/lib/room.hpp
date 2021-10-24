@@ -28,6 +28,7 @@ private:
     int capacity;
     int comfort;
     int price;
+
     bool available;
 };
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>CreateRoom</class>
- <widget class="QDialog" name="CreateRoom">
+ <class>EditRoom</class>
+ <widget class="QDialog" name="EditRoom">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -86,7 +86,11 @@
      <widget class="QLineEdit" name="comfortEdit"/>
     </item>
     <item row="2" column="2">
-     <widget class="QLineEdit" name="numEdit"/>
+     <widget class="QLineEdit" name="numEdit">
+      <property name="inputMethodHints">
+       <set>Qt::ImhNone</set>
+      </property>
+     </widget>
     </item>
     <item row="3" column="0">
      <widget class="QLabel" name="label_2">
@@ -156,7 +160,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>CreateRoom</receiver>
+   <receiver>EditRoom</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -172,7 +176,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>CreateRoom</receiver>
+   <receiver>EditRoom</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

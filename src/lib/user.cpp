@@ -44,7 +44,7 @@ const QString &User::getSeries() const
 
 void User::setSeries(const QString &series_t)
 {
-    series = series_t;
+    series = series_t.trimmed();
 }
 
 const QString &User::getAdress() const
@@ -55,37 +55,6 @@ const QString &User::getAdress() const
 void User::setAdress(const QString &adress_t)
 {
     adress = adress_t;
-}
-
-const QDate User::getDateSettling() const
-{
-    return date_settling;
-}
-
-void User::setDateSettling(const int day, const int month, const int year)
-{
-    date_settling.setDate(year, month, day);
-}
-
-const QDate User::getDateRelease() const
-{
-    return date_release;
-}
-
-void User::setDateRelease(const int day, const int month, const int year)
-{
-    date_release.setDate(year, month, day);
-}
-
-
-const int User::getRoom() const
-{
-    return number_room;
-}
-
-void User::setRoom(const int number)
-{
-    number_room = number;
 }
 
 const int User::getVisit() const
@@ -126,12 +95,12 @@ void User::setSelect(const bool selection)
 
 void User::save(QDataStream &ost) const
 {
-    ost << surname << name << patronymic << series << date_settling << date_release << role
-        << adress << number_room << count_visit;
+    ost << surname << name << patronymic << series << role
+        << adress << count_visit;
 }
 
 void User::load(QDataStream &ist)
 {
-    ist >> surname >> name >> patronymic >> series >> date_settling >> date_release >> role
-            >> adress >> number_room >> count_visit;
+    ist >> surname >> name >> patronymic >> series >> role
+            >> adress >> count_visit;
 }

@@ -6,16 +6,16 @@
 #include "user.hpp"
 
 namespace Ui {
-class CreateRoom;
+class EditRoom;
 }
 
-class CreateRoom : public QDialog
+class EditRoom : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit CreateRoom(QWidget *parent = nullptr);
-    ~CreateRoom();
+    explicit EditRoom(QWidget *parent = nullptr);
+    ~EditRoom();
     void setRoom(Room *room);
     void setTitle(QString title);
     QString comfortConvert(int comfort);
@@ -24,7 +24,7 @@ private slots:
     void accept();
 
 private:
-    Ui::CreateRoom *ui;
+    Ui::EditRoom *ui;
     Room *r;
 };
 

@@ -18,13 +18,6 @@ public:
     const QString &getAdress() const;
     void setAdress(const QString &adress_t);
 
-    const QDate getDateSettling() const;
-    void setDateSettling(const int day, const int month, const int year);
-    const QDate getDateRelease() const;
-    void setDateRelease(const int day, const int month, const int year);
-
-    const int getRoom() const;
-    void setRoom(const int number);
     const int getVisit() const;
     void addVisit();
     void setVisit(const int visit_counter);
@@ -43,12 +36,7 @@ private:
     QString series;
     QString adress;
 
-    QDate date_settling;
-    QDate date_release;
-
-    int number_room;
     int count_visit;
-
     int role;
     bool selected;
 };

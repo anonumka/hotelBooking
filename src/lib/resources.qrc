@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/Edit-find-replace.svg</file>
+        <file>icons/List-add.svg</file>
+        <file>icons/List-remove.svg</file>
+    </qresource>
+</RCC>

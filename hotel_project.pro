@@ -1,5 +1,7 @@
 TEMPLATE = subdirs
-SUBDIRS = \
-    lib
-lib.subdir = src/lib
+SUBDIRS += \
+    lib \
+    tests
 
+lib.subdir = src/lib
+tests.subdir = src/tests
