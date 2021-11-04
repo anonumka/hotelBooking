@@ -72,7 +72,6 @@ void MainWindow::updateDisplayedValues()
     }
 }
 
-
 MainWindow::~MainWindow()
 {
     saveRoomsTable();

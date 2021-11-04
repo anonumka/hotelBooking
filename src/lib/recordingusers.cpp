@@ -65,6 +65,11 @@ void RecordingUsers::accept()
         QMessageBox::critical(this, config::applicationName, "Line doesn't have a digit");
         return;
     }
+    else if(series.toInt() != 10)
+    {
+        QMessageBox::critical(this, config::applicationName, "Series of passport can't be != 10");
+        return;
+    }
 
     QString adress = ui->adressEdit->text();
     if (adress.isEmpty())

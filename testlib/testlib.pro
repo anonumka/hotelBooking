@@ -6,5 +6,4 @@ CONFIG -= app_bundle
 
 TEMPLATE = app
 
-SOURCES += \
-    test_testHotelBooking.cpp
+SOURCES +=  tst_testmainwindow.cpp
