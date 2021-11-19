@@ -60,6 +60,13 @@ void auth::on_pushButton_clicked()
     RecordingUsers reg;
     reg.setUser(&u);
     reg.setbkdRoom(&bkr);
+
+    std::vector<QString> BusySeries;
+    for (size_t i = 0; i < vUsers->size(); i++) {
+        BusySeries.push_back(vUsers->at(i).getSeries());
+    }
+
+    reg.setBusySeriesUsers(BusySeries);
     reg.setWindowTitle("Hotel Booking");
     if (reg.exec() != RecordingUsers::Accepted) return;
     vUsers->push_back(u);

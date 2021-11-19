@@ -5,7 +5,6 @@
 #include "editroom.hpp"
 #include "ui_editroom.h"
 
-
 EditRoom::EditRoom(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::EditRoom)
@@ -23,6 +22,31 @@ EditRoom::~EditRoom()
     delete ui;
 }
 
+void EditRoom::setRoomNum(int num)
+{
+    ui->numEdit->setText(QString("%1").arg(num));
+}
+
+void EditRoom::setRoomCapacity(int capacity)
+{
+    ui->capacityEdit->setText(QString("%1").arg(capacity));
+}
+
+void EditRoom::setRoomComfort(QString comfort)
+{
+    ui->comfortEdit->setText(comfort);
+}
+
+void EditRoom::setRoomPrice(int price)
+{
+    ui->priceEdit->setText(QString("%1").arg(price));
+}
+
+void EditRoom::setNumOtherRoom(int num)
+{
+    vNums.push_back(num);
+}
+
 QString EditRoom::comfortConvert(int comfort)
 {
     if (comfort == 0)
@@ -37,17 +61,25 @@ void EditRoom::setRoom(Room *room)
 {
     r = room;
 
-    ui->numEdit->setText(QString("%1").arg(r->getNum()));
-    ui->capacityEdit->setText(QString("%1").arg(r->getCapacity()));
-    ui->priceEdit->setText(QString("%1").arg(r->getPrice()));
+    if(r)
+    {
+        ui->numEdit->setText(QString("%1").arg(r->getNum()));
+        ui->capacityEdit->setText(QString("%1").arg(r->getCapacity()));
+        ui->priceEdit->setText(QString("%1").arg(r->getPrice()));
 
-    int comfort = r->getComfort();
-    ui->comfortEdit->setText(comfortConvert(comfort));
+        int comfort = r->getComfort();
+        ui->comfortEdit->setText(comfortConvert(comfort));
+    }
 }
 
 void EditRoom::setTitle(QString title)
 {
     ui->label_8->setText(title);
+}
+
+void EditRoom::setNumsVector(std::vector<int> vNums_)
+{
+    vNums = vNums_;
 }
 
 void EditRoom::accept()
@@ -56,6 +88,15 @@ void EditRoom::accept()
     int capacity = QString(ui->capacityEdit->text()).toInt();
     QString comfort = ui->comfortEdit->text();
     int price = QString(ui->priceEdit->text()).toInt();
+
+    for (size_t i = 0; i < vNums.size(); i++)
+    {
+        if (vNums[i] == num)
+        {
+            QMessageBox::warning(this, config::applicationName, "Inccorect entered num\nNum busy.");
+            return;
+        }
+    }
 
     if (num <= 0)
     {

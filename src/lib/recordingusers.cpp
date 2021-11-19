@@ -30,6 +30,42 @@ void RecordingUsers::setbkdRoom(BookedRoom *bkdr)
     bkd = bkdr;
 }
 
+void RecordingUsers::setSurname(QString surname)
+{
+    ui->surnameEdit->setText(surname);
+}
+
+void RecordingUsers::setName(QString name)
+{
+    ui->nameEdit->setText(name);
+}
+
+void RecordingUsers::setPatronymic(QString patronymic)
+{
+    ui->patronymicEdit->setText(patronymic);
+}
+
+void RecordingUsers::setSeriesNumPassport(QString series)
+{
+    ui->seriesEdit->setText(series);
+}
+
+void RecordingUsers::setCity(QString city)
+{
+    ui->adressEdit->setText(city);
+}
+
+void RecordingUsers::setSeriesOtherUser(QString series)
+{
+    vNums.push_back(series);
+}
+
+
+void RecordingUsers::setBusySeriesUsers(std::vector<QString> BusySeries)
+{
+    vNums = BusySeries;
+}
+
 void RecordingUsers::accept()
 {
     QString surname = ui->surnameEdit->text();
@@ -55,6 +91,14 @@ void RecordingUsers::accept()
 
     QString series = ui->seriesEdit->text(); bool ok;
     series.toInt(&ok);
+    for (size_t i = 0; i < vNums.size(); i++) {
+        if (vNums[i] == series)
+        {
+            QMessageBox::critical(this, config::applicationName, "Series already busy.");
+            return;
+        }
+    }
+
     if (series.isEmpty())
     {
         QMessageBox::critical(this, config::applicationName, "Line series is empty");
@@ -65,7 +109,7 @@ void RecordingUsers::accept()
         QMessageBox::critical(this, config::applicationName, "Line doesn't have a digit");
         return;
     }
-    else if(series.toInt() != 10)
+    else if(series.size() != 10)
     {
         QMessageBox::critical(this, config::applicationName, "Series of passport can't be != 10");
         return;

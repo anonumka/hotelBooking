@@ -2,7 +2,7 @@
 #define AUTH_HPP
 
 #include <QDialog>
-#include <user.hpp>
+#include "user.hpp"
 
 namespace Ui {
 class auth;

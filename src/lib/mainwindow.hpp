@@ -7,6 +7,15 @@
 #include "recordingusers.hpp"
 #include "bookedroom.hpp"
 
+#include "config.hpp"
+#include "ui_mainwindow.h"
+#include "ui_dialogbkdroom.h"
+#include "roomtable.hpp"
+#include "bookingroom.hpp"
+#include "ui_recordingusers.h"
+#include "listusers.hpp"
+#include "auth.hpp"
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE

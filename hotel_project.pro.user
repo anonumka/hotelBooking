@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 5.0.2, 2021-11-03T17:01:08. -->
+<!-- Written by QtCreator 5.0.2, 2021-11-19T01:08:35. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -68,8 +68,39 @@
     <value type="bool" key="AutoTest.Framework.QtTest">true</value>
    </valuemap>
    <valuemap type="QVariantMap" key="AutoTest.CheckStates">
-    <value type="Qt::CheckState" key="1@D:/mycppach/qt/mdkp/hotel_project/testlib/tst_testmainwindow.cpp:testMainWindow">Checked</value>
-    <value type="Qt::CheckState" key="1@D:/mycppach/qt/mdkp/hotel_project/testlib/tst_testmainwindow.cpp:test_case1">Checked</value>
+    <value type="Qt::CheckState" key="1@D:/mycppach/qt/mdkp/hotel_project/src/tests/OperationWiithMainWindow/tst_operationwithmainwindow.cpp:OperationWithMainWindow">Checked</value>
+    <value type="Qt::CheckState" key="1@D:/mycppach/qt/mdkp/hotel_project/src/tests/OperationWiithMainWindow/tst_operationwithmainwindow.cpp:cleanupTestCase">Unchecked</value>
+    <value type="Qt::CheckState" key="1@D:/mycppach/qt/mdkp/hotel_project/src/tests/OperationWiithMainWindow/tst_operationwithmainwindow.cpp:initTestCase">Unchecked</value>
+    <value type="Qt::CheckState" key="1@D:/mycppach/qt/mdkp/hotel_project/src/tests/OperationWiithMainWindow/tst_operationwithmainwindow.cpp:test_case1">Checked</value>
+    <value type="Qt::CheckState" key="1@D:/mycppach/qt/mdkp/hotel_project/src/tests/OperationWithRooms/tst_tst_operationwithrooms.cpp:busy num room">Checked</value>
+    <value type="Qt::CheckState" key="1@D:/mycppach/qt/mdkp/hotel_project/src/tests/OperationWithRooms/tst_tst_operationwithrooms.cpp:cleanupTestCase">Unchecked</value>
+    <value type="Qt::CheckState" key="1@D:/mycppach/qt/mdkp/hotel_project/src/tests/OperationWithRooms/tst_tst_operationwithrooms.cpp:empty capacity">Checked</value>
+    <value type="Qt::CheckState" key="1@D:/mycppach/qt/mdkp/hotel_project/src/tests/OperationWithRooms/tst_tst_operationwithrooms.cpp:empty comfort">Checked</value>
+    <value type="Qt::CheckState" key="1@D:/mycppach/qt/mdkp/hotel_project/src/tests/OperationWithRooms/tst_tst_operationwithrooms.cpp:empty num">Checked</value>
+    <value type="Qt::CheckState" key="1@D:/mycppach/qt/mdkp/hotel_project/src/tests/OperationWithRooms/tst_tst_operationwithrooms.cpp:empty price">Checked</value>
+    <value type="Qt::CheckState" key="1@D:/mycppach/qt/mdkp/hotel_project/src/tests/OperationWithRooms/tst_tst_operationwithrooms.cpp:error capacity">Checked</value>
+    <value type="Qt::CheckState" key="1@D:/mycppach/qt/mdkp/hotel_project/src/tests/OperationWithRooms/tst_tst_operationwithrooms.cpp:error num">Checked</value>
+    <value type="Qt::CheckState" key="1@D:/mycppach/qt/mdkp/hotel_project/src/tests/OperationWithRooms/tst_tst_operationwithrooms.cpp:error price">Checked</value>
+    <value type="Qt::CheckState" key="1@D:/mycppach/qt/mdkp/hotel_project/src/tests/OperationWithRooms/tst_tst_operationwithrooms.cpp:initTestCase">Unchecked</value>
+    <value type="Qt::CheckState" key="1@D:/mycppach/qt/mdkp/hotel_project/src/tests/OperationWithRooms/tst_tst_operationwithrooms.cpp:testEditRoom">Checked</value>
+    <value type="Qt::CheckState" key="1@D:/mycppach/qt/mdkp/hotel_project/src/tests/OperationWithRooms/tst_tst_operationwithrooms.cpp:testEditRoom_data">Unchecked</value>
+    <value type="Qt::CheckState" key="1@D:/mycppach/qt/mdkp/hotel_project/src/tests/OperationWithRooms/tst_tst_operationwithrooms.cpp:test_emptyRoom">Checked</value>
+    <value type="Qt::CheckState" key="1@D:/mycppach/qt/mdkp/hotel_project/src/tests/OperationWithRooms/tst_tst_operationwithrooms.cpp:test_emptyRoom_data">Unchecked</value>
+    <value type="Qt::CheckState" key="1@D:/mycppach/qt/mdkp/hotel_project/src/tests/OperationWithRooms/tst_tst_operationwithrooms.cpp:tst_OperationWithRooms">Checked</value>
+    <value type="Qt::CheckState" key="1@D:/mycppach/qt/mdkp/hotel_project/src/tests/OperationWithUsers/tst_operationwithusers.cpp:busy series">Checked</value>
+    <value type="Qt::CheckState" key="1@D:/mycppach/qt/mdkp/hotel_project/src/tests/OperationWithUsers/tst_operationwithusers.cpp:cleanupTestCase">Unchecked</value>
+    <value type="Qt::CheckState" key="1@D:/mycppach/qt/mdkp/hotel_project/src/tests/OperationWithUsers/tst_operationwithusers.cpp:empty city">Checked</value>
+    <value type="Qt::CheckState" key="1@D:/mycppach/qt/mdkp/hotel_project/src/tests/OperationWithUsers/tst_operationwithusers.cpp:empty name">Checked</value>
+    <value type="Qt::CheckState" key="1@D:/mycppach/qt/mdkp/hotel_project/src/tests/OperationWithUsers/tst_operationwithusers.cpp:empty patronymic">Checked</value>
+    <value type="Qt::CheckState" key="1@D:/mycppach/qt/mdkp/hotel_project/src/tests/OperationWithUsers/tst_operationwithusers.cpp:empty series">Checked</value>
+    <value type="Qt::CheckState" key="1@D:/mycppach/qt/mdkp/hotel_project/src/tests/OperationWithUsers/tst_operationwithusers.cpp:empty surname">Checked</value>
+    <value type="Qt::CheckState" key="1@D:/mycppach/qt/mdkp/hotel_project/src/tests/OperationWithUsers/tst_operationwithusers.cpp:few series">Checked</value>
+    <value type="Qt::CheckState" key="1@D:/mycppach/qt/mdkp/hotel_project/src/tests/OperationWithUsers/tst_operationwithusers.cpp:initTestCase">Unchecked</value>
+    <value type="Qt::CheckState" key="1@D:/mycppach/qt/mdkp/hotel_project/src/tests/OperationWithUsers/tst_operationwithusers.cpp:long series">Checked</value>
+    <value type="Qt::CheckState" key="1@D:/mycppach/qt/mdkp/hotel_project/src/tests/OperationWithUsers/tst_operationwithusers.cpp:operationwithusers">Checked</value>
+    <value type="Qt::CheckState" key="1@D:/mycppach/qt/mdkp/hotel_project/src/tests/OperationWithUsers/tst_operationwithusers.cpp:test_correctInputUser">Checked</value>
+    <value type="Qt::CheckState" key="1@D:/mycppach/qt/mdkp/hotel_project/src/tests/OperationWithUsers/tst_operationwithusers.cpp:test_correctInputUser_data">Checked</value>
+    <value type="Qt::CheckState" key="1@D:/mycppach/qt/mdkp/hotel_project/src/tests/OperationWithUsers/tst_operationwithusers.cpp:without digits series">Checked</value>
    </valuemap>
    <value type="int" key="AutoTest.RunAfterBuild">0</value>
    <value type="bool" key="AutoTest.UseGlobal">true</value>
@@ -256,16 +287,32 @@
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:D:/mycppach/qt/mdkp/hotel_project/testlib/testlib.pro</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">D:/mycppach/qt/mdkp/hotel_project/testlib/testlib.pro</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:D:/mycppach/qt/mdkp/hotel_project/src/tests/OperationWithRooms/OperationWithRooms.pro</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">D:/mycppach/qt/mdkp/hotel_project/src/tests/OperationWithRooms/OperationWithRooms.pro</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">D:/mycppach/qt/mdkp/build-hotel_project-Desktop_Qt_6_2_0_MinGW_64_bit-Debug/testlib</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">D:/mycppach/qt/mdkp/build-hotel_project-Desktop_Qt_6_2_0_MinGW_64_bit-Debug/src/tests/OperationWithRooms</value>
    </valuemap>
-   <value type="int" key="ProjectExplorer.Target.RunConfigurationCount">2</value>
+   <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.2">
+    <value type="bool" key="Analyzer.Perf.Settings.UseGlobalSettings">true</value>
+    <value type="bool" key="Analyzer.QmlProfiler.Settings.UseGlobalSettings">true</value>
+    <value type="bool" key="Analyzer.Valgrind.Settings.UseGlobalSettings">true</value>
+    <valuelist type="QVariantList" key="CustomOutputParsers"/>
+    <value type="int" key="PE.EnvironmentAspect.Base">2</value>
+    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:D:/mycppach/qt/mdkp/hotel_project/src/tests/OperationWithUsers/OperationWithUsers.pro</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">D:/mycppach/qt/mdkp/hotel_project/src/tests/OperationWithUsers/OperationWithUsers.pro</value>
+    <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
+    <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
+    <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">D:/mycppach/qt/mdkp/build-hotel_project-Desktop_Qt_6_2_0_MinGW_64_bit-Debug/src/tests/OperationWithUsers</value>
+   </valuemap>
+   <value type="int" key="ProjectExplorer.Target.RunConfigurationCount">3</value>
   </valuemap>
  </data>
  <data>

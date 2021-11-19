@@ -7,15 +7,7 @@
 #include <set>
 #include <QStandardItemModel>
 
-#include "config.hpp"
 #include "mainwindow.hpp"
-#include "ui_mainwindow.h"
-#include "ui_dialogbkdroom.h"
-#include "roomtable.hpp"
-#include "bookingroom.hpp"
-#include "ui_recordingusers.h"
-#include "listusers.hpp"
-#include "auth.hpp"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -209,9 +201,13 @@ void MainWindow::addUser(User u)
 
 void MainWindow::create_room()
 {
+    std::vector<int> NumsRooms;
+    for (int i = 0; i < vRoom->size(); i++)
+        NumsRooms.push_back((*vRoom)[i].getNum());
     Room r;
     EditRoom cr;
     cr.setRoom(&r);
+    cr.setNumsVector(NumsRooms);
     cr.setWindowTitle(config::applicationName);
     cr.setTitle("Room creator: ");
     if (cr.exec() != EditRoom::Accepted) return;
@@ -232,6 +228,9 @@ void MainWindow::edit_room()
 
         for (const auto &i : idc) rows.insert(i.row());
     }
+    std::vector<int> NumsRooms;
+    for (int i = 0; i < vRoom->size(); i++)
+        NumsRooms.push_back((*vRoom)[i].getNum());
     for (auto it = rows.rbegin(); it != rows.rend(); ++it)
     {
         Room r = (*vRoom)[*it];
@@ -239,6 +238,7 @@ void MainWindow::edit_room()
         er.setRoom(&r);
         er.setWindowTitle(config::applicationName);
         er.setTitle("Room editor: ");
+        er.setNumsVector(NumsRooms);
         if (er.exec() != EditRoom::Accepted) return;
         vRoom->setRoom(*it, r);
     }
@@ -264,7 +264,7 @@ void MainWindow::del_room()
         int count = 0;
         for (size_t i = 0; i < bkdRoom.size(); i++)
         {
-            if ((*vRoom)[*it].getNum() == bkdRoom[i].getRoom()) { count++; }
+            if (num == bkdRoom[i].getRoom()) { count++; }
         }
         if (count != 0)
             if (QMessageBox::question(this, config::applicationName,
