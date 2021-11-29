@@ -26,7 +26,7 @@
     <enum>Qt::Horizontal</enum>
    </property>
    <property name="standardButtons">
-    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok|QDialogButtonBox::Reset</set>
+    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
    </property>
   </widget>
   <widget class="QWidget" name="formLayoutWidget">
@@ -49,7 +49,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Booking room</string>
+       <string>Бронирование комнаты</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>

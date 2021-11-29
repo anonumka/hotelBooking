@@ -7,7 +7,7 @@
 namespace config
 {
     const char applicationName[] = QT_TRANSLATE_NOOP("Config", "Hotel Booking");
-    const char applicationVersion[] = "20210926";
+    const char applicationVersion[] = "20211107";
     const QString fileUsers = "users.tnb";
     const QString fileRooms = "rooms.tnb";
     const QString fileBookedRooms = "bkdRooms.tnb";

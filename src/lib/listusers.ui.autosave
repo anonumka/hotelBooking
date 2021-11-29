@@ -85,7 +85,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Info user:</string>
+       <string>Информация о пользователе:</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>

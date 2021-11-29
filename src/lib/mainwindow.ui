@@ -117,7 +117,7 @@
         </font>
        </property>
        <property name="text">
-        <string>Current time:</string>
+        <string>Текущее время:</string>
        </property>
       </widget>
      </item>

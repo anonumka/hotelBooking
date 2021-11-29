@@ -49,7 +49,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Recording Users:</string>
+       <string>Регистрация пользователя:</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>

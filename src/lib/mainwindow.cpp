@@ -221,27 +221,23 @@ void MainWindow::edit_room()
         QMessageBox::warning(this, config::applicationName, "Choice a room in table.");
         return;
     }
-    std::set<int> rows;
-    {
-        QModelIndexList idc = ui->hotelView->selectionModel()->selectedRows();
-        (&idc)->last();
 
-        for (const auto &i : idc) rows.insert(i.row());
-    }
+    QModelIndexList selection = ui->hotelView->selectionModel()->selectedRows();
+    QModelIndex index = selection.at(0);
+    size_t ind = index.row();
+
     std::vector<int> NumsRooms;
     for (int i = 0; i < vRoom->size(); i++)
         NumsRooms.push_back((*vRoom)[i].getNum());
-    for (auto it = rows.rbegin(); it != rows.rend(); ++it)
-    {
-        Room r = (*vRoom)[*it];
-        EditRoom er;
-        er.setRoom(&r);
-        er.setWindowTitle(config::applicationName);
-        er.setTitle("Room editor: ");
-        er.setNumsVector(NumsRooms);
-        if (er.exec() != EditRoom::Accepted) return;
-        vRoom->setRoom(*it, r);
-    }
+
+    Room r = (*vRoom)[ind];
+    EditRoom er;
+    er.setRoom(&r);
+    er.setWindowTitle(config::applicationName);
+    er.setTitle("Room editor: ");
+    er.setNumsVector(NumsRooms);
+    if (er.exec() != EditRoom::Accepted) return;
+    vRoom->setRoom(ind, r);
 }
 
 void MainWindow::del_room()
@@ -251,27 +247,24 @@ void MainWindow::del_room()
         QMessageBox::warning(this, config::applicationName, "Choice a room in table.");
         return;
     }
-    std::set<int> rows;
-    {
-        QModelIndexList idc = ui->hotelView->selectionModel()->selectedRows();
-        (&idc)->last();
 
-        for (const auto &i : idc) rows.insert(i.row());
-    }
-    for (auto it = rows.rbegin(); it != rows.rend(); ++it)
+    QModelIndexList selection = ui->hotelView->selectionModel()->selectedRows();
+    QModelIndex index = selection.at(0);
+    size_t ind = index.row();
+
+    int num = (*vRoom)[ind].getNum();
+    int count = 0;
+    for (size_t i = 0; i < bkdRoom.size(); i++)
     {
-        int num = (*vRoom)[*it].getNum();
-        int count = 0;
-        for (size_t i = 0; i < bkdRoom.size(); i++)
-        {
-            if (num == bkdRoom[i].getRoom()) { count++; }
-        }
-        if (count != 0)
-            if (QMessageBox::question(this, config::applicationName,
-                                          tr("%1 users booked this room. Are you sure you want to delete this room?").arg(count)) == QMessageBox::No)
-            { return; }
-        vRoom->erase(*it);
+        if (num == bkdRoom[i].getRoom()) { count++; }
     }
+    if (count != 0)
+        if (QMessageBox::question(this, config::applicationName,
+                                        tr("%1 users booked this room. "
+                                        "Are you sure you want to delete this room?").arg(count))
+                                        == QMessageBox::No)
+        { return; }
+    vRoom->erase(ind);
 }
 
 void MainWindow::list_user()
@@ -280,7 +273,7 @@ void MainWindow::list_user()
     lu.setUsers(&vUsers);
     lu.setBkdRooms(&bkdRoom);
     lu.setWindowTitle("List Users");
-    if (lu.exec() != ListUsers::Accepted) return;
+    lu.exec();
 }
 
 void MainWindow::listUsersBookedRoom(const QModelIndex &idx)
@@ -296,7 +289,8 @@ void MainWindow::listUsersBookedRoom(const QModelIndex &idx)
 
     QStandardItemModel *bkrModel = new QStandardItemModel(this);
     bkrModel->setColumnCount(3);
-    bkrModel->setHorizontalHeaderLabels(QStringList() << "Фамилия" << "Паспорт" << "Дата заселения" << "Дата выселения");
+    bkrModel->setHorizontalHeaderLabels(QStringList() << "Фамилия" << "Паспорт"
+                                        << "Дата заселения" << "Дата выселения");
     ui_listbkdroom.tableView->setModel(bkrModel);
     ui_listbkdroom.tableView->horizontalHeader()->setStretchLastSection(true);
     ui_listbkdroom.tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -329,8 +323,9 @@ void MainWindow::listUsersBookedRoom(const QModelIndex &idx)
         QMessageBox::information(this, "Booking Room", "Room is empty!");
         return;
     }
-
-    listbkdroom->show();
+    ui_listbkdroom.label_2->setText(QString("Свободных мест: %1").arg((*vRoom)[idx.row()].getCapacity()
+                                    - bkrModel->rowCount()));
+    listbkdroom->exec();
 }
 
 void MainWindow::booking_room(const QModelIndex &idx)
@@ -560,7 +555,7 @@ void MainWindow::windowAbout()
     about.setWindowTitle(QString("About %1").arg(config::applicationName));
     about.setText(QString("%1<br>"
         "Author: <a href=\"mailto:cergeu912@gmail.com\">Antsiferov Denis Aleksandrovich</a><br>"
-        "Github: <a href=\"https://github.com/anonumka?tab=repositories\">*click*</a><br>"
+        "Github: <a href=\"https://github.com/anonumka/hotelBooking\">*click*</a><br>"
         "Icons by <a href=\"http://tango.freedesktop.org/"
         "Tango_Desktop_Project\">The Tango! Desktop Project</a><br>"
         "Version %1: %2<br> Version QT: %3")
