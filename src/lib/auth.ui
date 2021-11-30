@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>auth</class>
- <widget class="QDialog" name="auth">
+ <class>Auth</class>
+ <widget class="QDialog" name="Auth">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -47,12 +47,11 @@
       <property name="font">
        <font>
         <pointsize>16</pointsize>
-        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
       <property name="text">
-       <string>Auth</string>
+       <string>Авторизация</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -133,7 +132,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="recordingButton">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -171,7 +170,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>auth</receiver>
+   <receiver>Auth</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -187,7 +186,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>auth</receiver>
+   <receiver>Auth</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -200,5 +199,24 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>recordingButton</sender>
+   <signal>clicked()</signal>
+   <receiver>Auth</receiver>
+   <slot>recordingUsersButton()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>75</x>
+     <y>270</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
+ <slots>
+  <slot>recordingUsersButton()</slot>
+ </slots>
 </ui>

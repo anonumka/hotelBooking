@@ -1,3 +1,7 @@
+/*!
+ * \file
+ * \brief Файл реализация класса BookedRoom
+ */
 #include "bookedroom.hpp"
 
 BookedRoom::BookedRoom()

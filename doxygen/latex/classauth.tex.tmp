@@ -1,0 +1,25 @@
+\hypertarget{classauth}{}\doxysection{auth Class Reference}
+\label{classauth}\index{auth@{auth}}
+
+
+Inheritance diagram for auth\+:
+% FIG 0
+
+
+Collaboration diagram for auth\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classauth_a6b6b16d4e6919c9a91a98767076ce36e}\label{classauth_a6b6b16d4e6919c9a91a98767076ce36e}} 
+{\bfseries auth} (Q\+Widget $\ast$parent=nullptr)
+\item 
+\mbox{\Hypertarget{classauth_aa4221ec97a9aa4ca8a469b8019317bbd}\label{classauth_aa4221ec97a9aa4ca8a469b8019317bbd}} 
+void {\bfseries set\+Users} (std\+::vector$<$ \mbox{\hyperlink{classUser}{User}} $>$ $\ast$vU)
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/lib/auth.\+hpp\item 
+src/lib/auth.\+cpp\end{DoxyCompactItemize}

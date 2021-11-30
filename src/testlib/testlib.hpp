@@ -1,3 +1,7 @@
+/*!
+ * \file
+ * \brief Файл основа для тестов
+ */
 #ifndef TESTLIB_HPP
 #define TESTLIB_HPP
 

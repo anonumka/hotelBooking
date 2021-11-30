@@ -1,3 +1,7 @@
+/*!
+ * \file
+ * \brief Файл реализация класса Room
+ */
 #include "room.hpp"
 
 Room::Room()

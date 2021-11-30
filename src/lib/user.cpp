@@ -1,3 +1,7 @@
+/*!
+ * \file
+ * \brief Файл реализация класса User
+ */
 #include "user.hpp"
 
 User::User()

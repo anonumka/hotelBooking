@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>404</width>
-    <height>283</height>
+    <height>289</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <x>9</x>
      <y>9</y>
      <width>381</width>
-     <height>265</height>
+     <height>270</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
@@ -80,12 +80,11 @@
       <property name="font">
        <font>
         <pointsize>12</pointsize>
-        <weight>75</weight>
         <bold>true</bold>
        </font>
       </property>
       <property name="text">
-       <string>Info user:</string>
+       <string>Информация о пользователях:</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>

@@ -1,0 +1,10 @@
+<map id="src/lib/bookingroom.hpp" name="src/lib/bookingroom.hpp">
+<area shape="rect" id="node1" title="Заголовочный файл класса BookingRoom." alt="" coords="109,5,288,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,80,80,107"/>
+<area shape="rect" id="node3" href="$room_8hpp.html" title="Заголовочный файл класса Room." alt="" coords="105,80,189,107"/>
+<area shape="rect" id="node6" href="$user_8hpp.html" title="Заголовочный файл класса User." alt="" coords="213,80,291,107"/>
+<area shape="rect" id="node8" href="$bookedroom_8hpp.html" title="Заголовочный файл класса BookedRoom." alt="" coords="315,80,445,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="89,155,199,181"/>
+<area shape="rect" id="node5" title=" " alt="" coords="223,155,286,181"/>
+<area shape="rect" id="node7" title=" " alt="" coords="326,155,397,181"/>
+</map>

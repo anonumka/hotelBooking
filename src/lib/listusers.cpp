@@ -1,3 +1,7 @@
+/*!
+ * \file
+ * \brief Файл реализация класса ListUsers
+ */
 #include <QMessageBox>
 #include "listusers.hpp"
 #include "ui_listusers.h"
@@ -7,7 +11,7 @@ ListUsers::ListUsers(QWidget *parent) :
     ui(new Ui::ListUsers)
 {
     ui->setupUi(this);
-    setFixedSize(404, 283);
+    setFixedSize(404, 288);
     ui->countEdit->setValidator(new QIntValidator);
 }
 

@@ -1,3 +1,7 @@
+/*!
+ * \file
+ * \brief Файл реализация класса RecordingUsers
+ */
 #include <QMessageBox>
 #include <QIntValidator>
 

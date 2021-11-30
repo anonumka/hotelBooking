@@ -1,3 +1,7 @@
+/*!
+ * \file
+ * \brief Главный файл, запускающий MainWindow
+ */
 #include "mainwindow.hpp"
 
 #include <QApplication>

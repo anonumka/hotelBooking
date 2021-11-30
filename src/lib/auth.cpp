@@ -1,26 +1,30 @@
+/*!
+ * \file
+ * \brief Файл реализация класса Auth
+ */
 #include "auth.hpp"
 #include "ui_auth.h"
 #include "recordingusers.hpp"
 #include <QMessageBox>
 
-auth::auth(QWidget *parent) :
+Auth::Auth(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::auth)
+    ui(new Ui::Auth)
 {
     ui->setupUi(this);
     setFixedSize(400, 300);
 }
 
-auth::~auth()
+Auth::~Auth()
 {
     delete ui;
 }
 
-void auth::setUsers(std::vector<User> *vU)
+void Auth::setUsers(std::vector<User> *vU)
 {
     vUsers = vU;
 }
-void auth::accept()
+void Auth::accept()
 {
     QString surname = ui->lineEdit->text();
     QString series = ui->lineEdit_2->text(); int index = -1;
@@ -53,7 +57,7 @@ void auth::accept()
 }
 
 
-void auth::on_pushButton_clicked()
+void Auth::recordingUsersButton()
 {
     User u;
     BookedRoom bkr;

@@ -1,3 +1,9 @@
+/*!
+ * \file
+ * \brief Файл реализация главного окна
+ *
+ * Данное окно вляется общим для всех пользователей.
+ */
 #include <QFileDialog>
 #include <QSaveFile>
 #include <QDate>
@@ -32,12 +38,13 @@ MainWindow::MainWindow(QWidget *parent)
     connect(updateTimer, SIGNAL(timeout()), this, SLOT(updateDisplayedValues()));
     updateTimer->start(100);
 
-    setFixedSize(568, 453);
+    setFixedSize(568, 460);
 }
 
 void MainWindow::updateDisplayedValues()
 {
-    if (index == -1) exit();
+    if (index == -1)
+        exit();
 
     ui->dateTimeEdit->setDate(QDate::currentDate());
     ui->dateTimeEdit->setTime(QTime::currentTime());
@@ -157,18 +164,21 @@ void MainWindow::loadBookedRoom()
         ist >> series;
         for (size_t i = 0; i < bkdRoom.size(); i++)
         {
-            if (series == bkdRoom[i].getSeries()) { ist >> bkdRoom[i]; }
+            if (series == bkdRoom[i].getSeries())
+            {
+                ist >> bkdRoom[i];
+            }
         }
     }
 }
 
 int MainWindow::authorisation()
 {
-    auth au;
+    Auth au;
     au.setUsers(&vUsers);
     au.setWindowTitle(config::applicationName);
     size_t i = 0;
-    if (au.exec() != auth::Accepted) { return -1; }
+    if (au.exec() != Auth::Accepted) { return -1; }
 
     for (i = 0; i < vUsers.size(); i++)
         if (vUsers[i].getSelect()) { break; }
@@ -203,14 +213,19 @@ void MainWindow::create_room()
 {
     std::vector<int> NumsRooms;
     for (int i = 0; i < vRoom->size(); i++)
+    {
         NumsRooms.push_back((*vRoom)[i].getNum());
+    }
     Room r;
     EditRoom cr;
     cr.setRoom(&r);
     cr.setNumsVector(NumsRooms);
     cr.setWindowTitle(config::applicationName);
     cr.setTitle("Room creator: ");
-    if (cr.exec() != EditRoom::Accepted) return;
+    if (cr.exec() != EditRoom::Accepted)
+    {
+        return;
+    }
     addRoom(r);
 }
 
@@ -222,13 +237,15 @@ void MainWindow::edit_room()
         return;
     }
 
+    std::vector<int> NumsRooms;
+    for (int i = 0; i < vRoom->size(); i++)
+    {
+        NumsRooms.push_back((*vRoom)[i].getNum());
+    }
+
     QModelIndexList selection = ui->hotelView->selectionModel()->selectedRows();
     QModelIndex index = selection.at(0);
     size_t ind = index.row();
-
-    std::vector<int> NumsRooms;
-    for (int i = 0; i < vRoom->size(); i++)
-        NumsRooms.push_back((*vRoom)[i].getNum());
 
     Room r = (*vRoom)[ind];
     EditRoom er;

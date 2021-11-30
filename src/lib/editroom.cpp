@@ -1,3 +1,7 @@
+/*!
+ * \file
+ * \brief Файл реализация класса EditRoom
+ */
 #include <QMessageBox>
 #include <QIntValidator>
 

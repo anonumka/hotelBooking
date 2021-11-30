@@ -1,4 +1,8 @@
-﻿#include "roomtable.hpp"
+﻿/*!
+ * \file
+ * \brief Файл реализация класса RoomTable
+ */
+#include "roomtable.hpp"
 
 RoomTable::RoomTable()
 {
@@ -129,10 +133,7 @@ void RoomTable::erase(SizeType idx)
 
 void RoomTable::setRoom(RoomTable::SizeType idx, Room room)
 {
-    // Присваиваем заметку
     vRoom[idx] = room;
-    // В соответствии с требованиями Qt, уведомляем привязанные виды о том,
-    // что данные в строке с индексом idx изменились
     emit dataChanged(index(idx, 0), index(idx, columnCount()));
 }
 

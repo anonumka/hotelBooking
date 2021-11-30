@@ -1,3 +1,7 @@
+/*!
+ * \file
+ * \brief Файл реализация класса Booking Room
+ */
 #include <QMessageBox>
 #include "bookingroom.hpp"
 #include "ui_bookingroom.h"

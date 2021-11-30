@@ -1,3 +1,7 @@
+/*!
+ * \file
+ * \brief Тесты для операций с пользователями
+ */
 #include <memory>
 #include <QtTest>
 #include <QCoreApplication>
@@ -6,7 +10,9 @@
 #include "../../lib/recordingusers.hpp"
 #include "../../lib/bookedroom.hpp"
 
-// add necessary includes here
+/*!
+ * \brief Класс с тестами для класса RecordingUsers
+ */
 
 class operationwithusers : public QObject
 {

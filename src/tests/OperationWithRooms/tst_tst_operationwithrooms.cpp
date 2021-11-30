@@ -1,3 +1,7 @@
+/*!
+ * \file
+ * \brief Тесты для операций с комнатами
+ */
 #include <memory>
 #include <QtTest>
 #include <QCoreApplication>
@@ -5,7 +9,9 @@
 #include "../../testlib/testlib.hpp"
 #include "../../lib/editroom.hpp"
 
-// add necessary includes here
+/*!
+ * \brief Класс с тестами для класса EditRoom
+ */
 
 class tst_OperationWithRooms : public QObject
 {
