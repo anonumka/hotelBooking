@@ -181,11 +181,25 @@ int MainWindow::authorisation()
     if (au.exec() != Auth::Accepted) { return -1; }
 
     for (i = 0; i < vUsers.size(); i++)
-        if (vUsers[i].getSelect()) { break; }
+        if (vUsers[i].getSelect())
+        {
+            break;
+        }
 
-    if (i == vUsers.size()) { return -1; }
+    if (i == vUsers.size())
+    {
+        return -1;
+    }
 
-    if (vUsers.size() == 1) { vUsers[0].setRole(2); }
+    if (vUsers.size() == 1)
+    {
+        QMessageBox::information(this, config::applicationName, QString("Добро пожаловать в информационную систему %1."
+                                                                "\n\nВы являетесь первым зарегистрированным пользователем"
+                                                                ", поэтому вы наделены правами администратора!"
+                                                                "\n\nПри возникновении проблем, обращайтесь к создателю. "
+                                                                "Ссылку на почту можно найти в Help->About.").arg(config::applicationName));
+        vUsers[0].setRole(2);
+    }
 
     role = vUsers[i].getRole();
     setEnableActionsUi(role);

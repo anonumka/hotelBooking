@@ -72,7 +72,10 @@ void Auth::recordingUsersButton()
 
     reg.setBusySeriesUsers(BusySeries);
     reg.setWindowTitle("Hotel Booking");
-    if (reg.exec() != RecordingUsers::Accepted) return;
+    if (reg.exec() != RecordingUsers::Accepted)
+    {
+        return;
+    }
     vUsers->push_back(u);
 }
 
