@@ -38,17 +38,17 @@ public:
     //! Установление адреса пользователя на \a adress_t
     void setAdress(const QString &adress_t);
     //! Возращение количества посещений гостиницы пользователем
-    const int getVisit() const;
+    int getVisit() const;
     //! Установление количества посещений гостиницы пользователем на \a +1
     void addVisit();
     //! Установление количества посещений гостиницы пользователем на \a visit_counter
     void setVisit(const int visit_counter);
     //! Возращение роль пользователя
-    const int getRole() const;
+    int getRole() const;
     //! Установление роли пользователя на \a adm
     void setRole(const int adm);
     //! Возращение выбранного пользователя во время авторизации
-    const bool getSelect() const;
+    bool getSelect() const;
     //! Установление выбранного пользователя на \с true, если авторизирован
     void setSelect(const bool selection);
     //! Сохранение значения переменных в поток \a ost

@@ -61,7 +61,7 @@ void User::setAdress(const QString &adress_t)
     adress = adress_t;
 }
 
-const int User::getVisit() const
+int User::getVisit() const
 {
     return count_visit;
 }
@@ -77,7 +77,7 @@ void User::setVisit(const int visit_counter)
     count_visit = visit_counter;
 }
 
-const int User::getRole() const
+int User::getRole() const
 {
     return role;
 }
@@ -87,7 +87,7 @@ void User::setRole(const int adm)
     role = adm;
 }
 
-const bool User::getSelect() const
+bool User::getSelect() const
 {
     return selected;
 }

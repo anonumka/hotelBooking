@@ -33,6 +33,38 @@
      <property name="rightMargin">
       <number>0</number>
      </property>
+     <item row="0" column="0">
+      <widget class="QLabel" name="label">
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Комнаты</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="3">
+      <widget class="QPushButton" name="bookingButton">
+       <property name="text">
+        <string>Бронировать</string>
+       </property>
+       <property name="icon">
+        <iconset resource="resources.qrc">
+         <normaloff>:/icons/Edit-find-replace.svg</normaloff>:/icons/Edit-find-replace.svg</iconset>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0" colspan="4">
+      <widget class="QTableView" name="hotelView">
+       <property name="gridStyle">
+        <enum>Qt::NoPen</enum>
+       </property>
+      </widget>
+     </item>
      <item row="0" column="3">
       <widget class="QDateTimeEdit" name="dateTimeEdit">
        <property name="enabled">
@@ -49,66 +81,6 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="1">
-      <widget class="QPushButton" name="AddRoomBtn">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="sizeIncrement">
-        <size>
-         <width>0</width>
-         <height>0</height>
-        </size>
-       </property>
-       <property name="whatsThis">
-        <string>Add Room</string>
-       </property>
-       <property name="text">
-        <string>Добавить комнату</string>
-       </property>
-       <property name="icon">
-        <iconset resource="resources.qrc">
-         <normaloff>:/icons/List-add.svg</normaloff>:/icons/List-add.svg</iconset>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="2">
-      <widget class="QPushButton" name="EditRoomBtn">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="whatsThis">
-        <string>Edit Room</string>
-       </property>
-       <property name="text">
-        <string>Изменить комнату</string>
-       </property>
-       <property name="icon">
-        <iconset resource="resources.qrc">
-         <normaloff>:/icons/Edit-find-replace.svg</normaloff>:/icons/Edit-find-replace.svg</iconset>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="0">
-      <widget class="QLabel" name="label">
-       <property name="font">
-        <font>
-         <pointsize>16</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>Комнаты</string>
-       </property>
-      </widget>
-     </item>
      <item row="0" column="2">
       <widget class="QLabel" name="label_2">
        <property name="font">
@@ -118,30 +90,6 @@
        </property>
        <property name="text">
         <string>Текущее время:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0" colspan="4">
-      <widget class="QTableView" name="hotelView">
-       <property name="gridStyle">
-        <enum>Qt::NoPen</enum>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="3">
-      <widget class="QPushButton" name="DelRoomBtn">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="whatsThis">
-        <string>Delete Room</string>
-       </property>
-       <property name="text">
-        <string>Удалить комнату</string>
-       </property>
-       <property name="icon">
-        <iconset resource="resources.qrc">
-         <normaloff>:/icons/List-remove.svg</normaloff>:/icons/List-remove.svg</iconset>
        </property>
       </widget>
      </item>
@@ -221,6 +169,10 @@
    </property>
   </action>
   <action name="actionAddRoom">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/List-add.svg</normaloff>:/icons/List-add.svg</iconset>
+   </property>
    <property name="text">
     <string>Add Room</string>
    </property>
@@ -231,6 +183,10 @@
    </property>
   </action>
   <action name="actionEditRoom">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/Edit-find-replace.svg</normaloff>:/icons/Edit-find-replace.svg</iconset>
+   </property>
    <property name="text">
     <string>Edit Room</string>
    </property>
@@ -276,6 +232,10 @@
    </property>
   </action>
   <action name="actionDelete_Room">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/icons/List-remove.svg</normaloff>:/icons/List-remove.svg</iconset>
+   </property>
    <property name="text">
     <string>Delete Room</string>
    </property>
@@ -314,22 +274,6 @@
     <hint type="destinationlabel">
      <x>364</x>
      <y>255</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>hotelView</sender>
-   <signal>activated(QModelIndex)</signal>
-   <receiver>MainWindow</receiver>
-   <slot>booking_room(QModelIndex)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>275</x>
-     <y>225</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>276</x>
-     <y>229</y>
     </hint>
    </hints>
   </connection>
@@ -494,38 +438,6 @@
    </hints>
   </connection>
   <connection>
-   <sender>AddRoomBtn</sender>
-   <signal>clicked()</signal>
-   <receiver>actionAddRoom</receiver>
-   <slot>trigger()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>208</x>
-     <y>33</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>EditRoomBtn</sender>
-   <signal>clicked()</signal>
-   <receiver>actionEditRoom</receiver>
-   <slot>trigger()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>342</x>
-     <y>33</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>actionDelete_Room</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
@@ -542,18 +454,34 @@
    </hints>
   </connection>
   <connection>
-   <sender>DelRoomBtn</sender>
+   <sender>bookingButton</sender>
    <signal>clicked()</signal>
-   <receiver>actionDelete_Room</receiver>
-   <slot>trigger()</slot>
+   <receiver>MainWindow</receiver>
+   <slot>booking_room()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>475</x>
-     <y>33</y>
+     <x>491</x>
+     <y>419</y>
     </hint>
     <hint type="destinationlabel">
-     <x>-1</x>
-     <y>-1</y>
+     <x>283</x>
+     <y>226</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>hotelView</sender>
+   <signal>doubleClicked(QModelIndex)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>booking_room()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>284</x>
+     <y>227</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>283</x>
+     <y>226</y>
     </hint>
    </hints>
   </connection>
@@ -565,7 +493,7 @@
   <slot>saveRoomsTable()</slot>
   <slot>registerUser()</slot>
   <slot>edit_room()</slot>
-  <slot>booking_room(QModelIndex)</slot>
+  <slot>booking_room()</slot>
   <slot>list_user()</slot>
   <slot>saveUsers()</slot>
   <slot>openUsers()</slot>

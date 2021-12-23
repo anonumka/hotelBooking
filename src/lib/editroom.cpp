@@ -80,12 +80,6 @@ void EditRoom::setTitle(QString title)
 {
     ui->label_8->setText(title);
 }
-
-void EditRoom::setNumsVector(std::vector<int> vNums_)
-{
-    vNums = vNums_;
-}
-
 void EditRoom::accept()
 {
     int num = QString(ui->numEdit->text()).toInt();
@@ -97,26 +91,26 @@ void EditRoom::accept()
     {
         if (vNums[i] == num)
         {
-            QMessageBox::warning(this, config::applicationName, "Inccorect entered num\nNum busy.");
+            QMessageBox::warning(this, config::applicationName, "Ошибка ввода номера комнаты.\nКомната занята.");
             return;
         }
     }
 
     if (num <= 0)
     {
-        QMessageBox::warning(this, config::applicationName, "Inccorect entered num\nNum can't be <= 0");
+        QMessageBox::warning(this, config::applicationName, "Ошибка ввода номера комнаты.\nНомер комнаты должен быть больше 0.");
         return;
     }
 
-    if (capacity <= 0 || capacity >= 10)
+    if (capacity <= 0 || capacity >= 20)
     {
-        QMessageBox::warning(this, config::applicationName, "Inccorect entered capacity\nCapacity should be 1-9");
+        QMessageBox::warning(this, config::applicationName, "Ошибка ввода вместимости.\nВместимость должна быть от 0 до 20.");
         return;
     }
 
     if (price <= 0)
     {
-        QMessageBox::warning(this, config::applicationName, "Inccorect entered price\nPrice can't be be < 0");
+        QMessageBox::warning(this, config::applicationName, "Ошибка ввода цены.\nЦена должна быть положительной.");
         return;
     }
 
@@ -126,8 +120,8 @@ void EditRoom::accept()
     else if (comfort == "Luxe") r->setComfort(2);
     else
     {
-        QMessageBox::warning(this, config::applicationName, "Inccorect entered textLine \"Comfort\""
-                                                            "\nUse 'Luxe', 'Semiuxe', 'Default'");
+        QMessageBox::warning(this, config::applicationName, "Неверно введен комфорт."
+                                                            "\nЗаписывайте как 'Luxe', 'Semiuxe', 'Default'");
         return;
     }
 

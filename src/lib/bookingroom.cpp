@@ -3,6 +3,7 @@
  * \brief Файл реализация класса Booking Room
  */
 #include <QMessageBox>
+#include "config.hpp"
 #include "bookingroom.hpp"
 #include "ui_bookingroom.h"
 
@@ -66,13 +67,14 @@ void bookingRoom::accept()
 
     if (date_selling >= date_release)
     {
-        QMessageBox::critical(this, "ERROR!", "Date Selling can't be later than Date Release.");
+        QMessageBox::critical(this, config::applicationName, "Дата заселения позже даты выселения.");
         return;
     }
 
     if ((date_selling < QDate::currentDate()) || (date_release < QDate::currentDate()))
     {
-        QMessageBox::critical(this, "ERROR!", "Date Selling or Date Release can't be < current date.");
+        QMessageBox::critical(this, config::applicationName,
+                              "Дата заселения или дата выселения не могут быть раньше текущей даты.");
         return;
     }
 
@@ -82,21 +84,22 @@ void bookingRoom::accept()
     int count_capacity = 0;
 
     for (size_t i = 0; i < bkdRoom->size(); i++)
-        if ((*bkdRoom)[i].getRoom() == num)
+        if (bkdRoom->at(i).getRoom() == num)
         {
-            count_capacity++;
+            ++count_capacity;
             if (count_capacity == capacity)
-                if (((*bkdRoom)[i].getDateSettling() <= date_selling) && (date_selling < (*bkdRoom)[i].getDateRelease()))
+                if ((bkdRoom->at(i).getDateSettling() <= date_selling) &&
+                        (date_selling < bkdRoom->at(i).getDateRelease()))
                 {
-                    QMessageBox::critical(this, "ERROR!", "This room not avaible in this day.\nChoise other day.");
+                    QMessageBox::critical(this, config::applicationName,
+                                          "Эта комната занята в этот промежуток.\nВыберите другие дни.");
                     return;
                 }
 
         }
+    r->setAvailable(++count_capacity == capacity);
 
-    r->setAvailable(++count_capacity < capacity);
-
-    (*u).addVisit();
+    u->addVisit();
 
     size_t i = 0;
     for (i = 0; i < bkdRoom->size(); ++i)
@@ -105,23 +108,22 @@ void bookingRoom::accept()
             break;
     }
 
-    (*bkdRoom)[i].setRoom(num);
-    (*bkdRoom)[i].setDateSettling(date_selling.day(), date_selling.month(), date_selling.year());
-    (*bkdRoom)[i].setDateRelease(date_release.day(), date_release.month(), date_release.year());
+    bkdRoom->at(i).setRoom(num);
+    bkdRoom->at(i).setDateSettling(date_selling.day(), date_selling.month(), date_selling.year());
+    bkdRoom->at(i).setDateRelease(date_release.day(), date_release.month(), date_release.year());
 
     return QDialog::accept();
 }
 
-void bookingRoom::on_sellingEdit_dateChanged(const QDate &date)
+void bookingRoom::on_sellingEdit_dateChanged(const QDate&)
 {
     ui->releaseEdit->setDate(ui->sellingEdit->date().addDays(1));
     check_price();
 }
 
 
-void bookingRoom::on_releaseEdit_dateChanged(const QDate &date)
+void bookingRoom::on_releaseEdit_dateChanged(const QDate&)
 {
-
     check_price();
 }
 

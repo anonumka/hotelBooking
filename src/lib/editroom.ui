@@ -75,7 +75,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Create Room:</string>
+       <string>Создание комнаты</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -95,7 +95,7 @@
     <item row="3" column="0">
      <widget class="QLabel" name="label_2">
       <property name="text">
-       <string>Capacity</string>
+       <string>Вместимость</string>
       </property>
      </widget>
     </item>
@@ -108,7 +108,7 @@
     <item row="4" column="0">
      <widget class="QLabel" name="label_3">
       <property name="text">
-       <string>Comfort</string>
+       <string>Вместимость</string>
       </property>
      </widget>
     </item>
@@ -141,14 +141,14 @@
     <item row="5" column="0">
      <widget class="QLabel" name="label_4">
       <property name="text">
-       <string>Price at day</string>
+       <string>Цена в день</string>
       </property>
      </widget>
     </item>
     <item row="2" column="0">
      <widget class="QLabel" name="label">
       <property name="text">
-       <string>Num room</string>
+       <string>Номер комнаты</string>
       </property>
      </widget>
     </item>

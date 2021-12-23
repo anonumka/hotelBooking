@@ -18,23 +18,23 @@ public:
     //! Конструктор
     Room();
     //! Возвращает номер комнаты
-    const int getNum() const;
+    int getNum() const;
     //! Устанавливает номер комнаты значения \a num_t
     void setNum(const int num_t);
     //! Возвращает вместимость комнаты
-    const int getCapacity() const;
+    int getCapacity() const;
     //! Устанавливает вместимость комнаты значения \a capacity_t
     void setCapacity(const int capacity_t);
     //! Возвращает комфорт комнаты
-    const int getComfort() const;
+    int getComfort() const;
     //! Устанавливает комфорт комнаты значения \a comfort_t
     void setComfort(const int comfort_t);
     //! Возвращает цену комнаты
-    const int getPrice() const;
+    int getPrice() const;
     //! Устанавливает цену комнаты значения \a price_t
     void setPrice(const int price_t);
     //! Возвращает \с true, если комната свобода
-    const bool getAvailable() const;
+    bool getAvailable() const;
     //! Устанавливает доступность комнаты
     void setAvailable(const bool available);
     //! Сохранение значения переменных в поток \a ost

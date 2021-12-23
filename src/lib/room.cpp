@@ -12,7 +12,7 @@ Room::Room()
     price = 0;
 }
 
-const int Room::getNum() const
+int Room::getNum() const
 {
     return num;
 }
@@ -22,7 +22,7 @@ void Room::setNum(const int num_t)
     num = num_t;
 }
 
-const int Room::getCapacity() const
+int Room::getCapacity() const
 {
     return capacity;
 }
@@ -32,7 +32,7 @@ void Room::setCapacity(const int capacity_t)
     capacity = capacity_t;
 }
 
-const int Room::getComfort() const
+int Room::getComfort() const
 {
     return comfort;
 }
@@ -42,7 +42,7 @@ void Room::setComfort(const int comfort_t)
     comfort = comfort_t;
 }
 
-const int Room::getPrice() const
+int Room::getPrice() const
 {
     return price;
 }
@@ -52,7 +52,7 @@ void Room::setPrice(const int price_t)
     price = price_t;
 }
 
-const bool Room::getAvailable() const
+bool Room::getAvailable() const
 {
     return available;
 }

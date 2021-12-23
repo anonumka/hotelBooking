@@ -12,7 +12,7 @@ Auth::Auth(QWidget *parent) :
     ui(new Ui::Auth)
 {
     ui->setupUi(this);
-    setFixedSize(400, 300);
+    setFixedSize(400, 234);
 }
 
 Auth::~Auth()

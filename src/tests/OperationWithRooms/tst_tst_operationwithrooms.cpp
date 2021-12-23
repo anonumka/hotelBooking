@@ -5,8 +5,8 @@
 #include <memory>
 #include <QtTest>
 #include <QCoreApplication>
+#include <QMessageBox>
 
-#include "../../testlib/testlib.hpp"
 #include "../../lib/editroom.hpp"
 
 /*!
@@ -73,7 +73,8 @@ void tst_OperationWithRooms::test_emptyRoom()
     m_dlg->open();
     QTimer::singleShot(0, [=]()
     {
-        Testlib::accept_active_message_box();
+        QMessageBox *box = dynamic_cast<QMessageBox *>(QApplication::activeModalWidget());
+        box->accept();
         m_dlg->reject();
     });
     m_dlg->accept();
@@ -109,7 +110,8 @@ void tst_OperationWithRooms::testEditRoom()
     m_dlg->open();
     QTimer::singleShot(0, [=]()
     {
-        Testlib::accept_active_message_box();
+        QMessageBox *box = dynamic_cast<QMessageBox *>(QApplication::activeModalWidget());
+        box->accept();
         m_dlg->reject();
     });
     m_dlg->accept();

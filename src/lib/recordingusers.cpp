@@ -14,7 +14,7 @@ RecordingUsers::RecordingUsers(QWidget *parent) :
     ui(new Ui::RecordingUsers)
 {
     ui->setupUi(this);
-    setFixedSize(400, 282);
+    setFixedSize(368, 237);
 
     ui->seriesEdit->setValidator(new QIntValidator);
 }
@@ -59,15 +59,14 @@ void RecordingUsers::setCity(QString city)
     ui->adressEdit->setText(city);
 }
 
+void RecordingUsers::setBusySeriesUsers(std::vector<QString> &BusySeries)
+{
+    vNums = BusySeries;
+}
+
 void RecordingUsers::setSeriesOtherUser(QString series)
 {
     vNums.push_back(series);
-}
-
-
-void RecordingUsers::setBusySeriesUsers(std::vector<QString> BusySeries)
-{
-    vNums = BusySeries;
 }
 
 void RecordingUsers::accept()
@@ -75,21 +74,21 @@ void RecordingUsers::accept()
     QString surname = ui->surnameEdit->text();
     if (surname.isEmpty())
     {
-        QMessageBox::critical(this, config::applicationName, "Line surname is empty");
+        QMessageBox::critical(this, config::applicationName, "Поле с фамилией пустое.");
         return;
     }
 
     QString name = ui->nameEdit->text();
     if (name.isEmpty())
     {
-        QMessageBox::critical(this, config::applicationName, "Line name is empty");
+        QMessageBox::critical(this, config::applicationName, "Поле с именем пустое.");
         return;
     }
 
     QString patronymic = ui->patronymicEdit->text();
     if (patronymic.isEmpty())
     {
-        QMessageBox::critical(this, config::applicationName, "Line patronymic is empty");
+        QMessageBox::critical(this, config::applicationName, "Поле отчество пустое.");
         return;
     }
 
@@ -98,24 +97,24 @@ void RecordingUsers::accept()
     for (size_t i = 0; i < vNums.size(); i++) {
         if (vNums[i] == series)
         {
-            QMessageBox::critical(this, config::applicationName, "Series already busy.");
+            QMessageBox::critical(this, config::applicationName, "Данная серия и номер паспорта уже есть в базе данных.");
             return;
         }
     }
 
     if (series.isEmpty())
     {
-        QMessageBox::critical(this, config::applicationName, "Line series is empty");
+        QMessageBox::critical(this, config::applicationName, "Поле с серией и номером паспорта пустое.");
         return;
     }
     else if (!ok)
     {
-        QMessageBox::critical(this, config::applicationName, "Line doesn't have a digit");
+        QMessageBox::critical(this, config::applicationName, "Поле с серией содержит буквы.");
         return;
     }
     else if(series.size() != 10)
     {
-        QMessageBox::critical(this, config::applicationName, "Series of passport can't be != 10");
+        QMessageBox::critical(this, config::applicationName, "Длина паспорта должна быть равной 10.");
         return;
     }
 

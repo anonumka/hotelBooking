@@ -6,13 +6,13 @@ SOURCES += \
     auth.cpp \
     bookedroom.cpp \
     bookingroom.cpp \
+    database.cpp \
     editroom.cpp \
     listusers.cpp \
     main.cpp \
     mainwindow.cpp \
     recordingusers.cpp \
     room.cpp \
-    roomtable.cpp \
     user.cpp
 
 HEADERS += \
@@ -20,12 +20,12 @@ HEADERS += \
     bookedroom.hpp \
     bookingroom.hpp \
     config.hpp \
+    database.hpp \
     editroom.hpp \
     listusers.hpp \
     mainwindow.hpp \
     recordingusers.hpp \
     room.hpp \
-    roomtable.hpp \
     user.hpp
 
 FORMS += \
@@ -37,7 +37,7 @@ FORMS += \
     mainwindow.ui \
     recordingusers.ui
 
-CONFIG += c++11
+CONFIG += c++17
 
 RESOURCES += \
     resources.qrc

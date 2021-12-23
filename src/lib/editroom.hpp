@@ -8,7 +8,6 @@
 #include <QDialog>
 #include "room.hpp"
 #include "user.hpp"
-#include "roomtable.hpp"
 
 namespace Ui {
 class EditRoom;
@@ -39,8 +38,6 @@ public:
     void setRoomPrice(int price);
     //! Функция, добавляющая номер в вектор занятых номеров комнат
     void setNumOtherRoom(int num);
-    //! Функция, устанавливающая занятые номера для комнат
-    void setNumsVector(std::vector<int> vNums_);
     //! Установка указателя на редактируемую комнату
     void setRoom(Room *room);
     //! Устанавливает название окна

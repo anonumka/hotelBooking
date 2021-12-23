@@ -6,15 +6,14 @@
 #define MAINWINDOW_HPP
 
 #include <QMainWindow>
-#include "roomtable.hpp"
+
+#include "database.hpp"
 #include "editroom.hpp"
 #include "recordingusers.hpp"
 #include "bookedroom.hpp"
-
 #include "config.hpp"
 #include "ui_mainwindow.h"
 #include "ui_dialogbkdroom.h"
-#include "roomtable.hpp"
 #include "bookingroom.hpp"
 #include "ui_recordingusers.h"
 #include "listusers.hpp"
@@ -41,27 +40,13 @@ public:
     //! Авторизация
     int authorisation();
     //! Отображение пользователей, забронировавших выбранную комнату
-    void listUsersBookedRoom(const QModelIndex &idx);
+    void listUsersBookedRoom(size_t& ind);
     //! Включение/отключение кнопок взависимости от пользователя
     void setEnableActionsUi (int role);
     //! Сохранение пользователей в .tnb-файл
-    void saveUsers();
-    //! Загрузка пользователей в .tnb-файл
-    void loadUsers();
-    //! Сохранение списка комнат в .tnb-файл
-    void saveRoomsTable();
-    //! Загрузка списка комнат в .tnb-файл
-    void loadRoomsTable();
-    //! Сохранение списка забронированных комнат в .tnb-файл
-    void saveBookedRoom();
-    //! Загрузка списка комнат в .tnb-файл
-    void loadBookedRoom();
-    //! Добавление пользователя в vUsers
     void addUser(User u);
     //! Добавление комнаты в vRooms
     void addRoom(const Room &r);
-    //! Обновление таблицы с комнатами
-    void setvroom(RoomTable *vRooms);
 public slots:
     //! Обновление доступных комнат и времени, расположенного в главном меню
     void updateDisplayedValues();
@@ -84,7 +69,7 @@ public slots:
     //! Функция удаления комнаты
     void del_room();
     //! Функция бронирования комнаты для клиентов
-    void booking_room(const QModelIndex &idx);
+    void booking_room();
     //! Список пользователей, доступный менеджерам и администраторам
     void list_user();
     //! Функция выхода из учетной записи
@@ -95,14 +80,22 @@ public slots:
     void exit();
 
 private:
+    //! Функция построения столбцов для таблицы с комнатами
+    void addColumns();
+    //! Обновление данных в таблице с комнатами
+    void refreshTableRooms();
     //! Указатель на интерфейс
     Ui::MainWindow *ui;
+    //! База данных
+    Database db;
     //! Вектор с комнатами
-    std::unique_ptr<RoomTable> vRoom;
+    std::vector<Room> *vRooms;
     //! Вектор с пользователями
-    std::vector<User> vUsers;
+    std::vector<User> *vUsers;
     //! Вектор с забронированными пользователями комнаты
-    std::vector<BookedRoom> bkdRoom;
+    std::vector<BookedRoom> *bkdRoom;
+    //! Модель таблицы комнат
+    QStandardItemModel *roomsModel;
     //! Роль пользователя
     int role;
     //! Индекс пользователя в векторе с пользователями

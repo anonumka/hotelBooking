@@ -43,7 +43,7 @@ public:
     //! Установка \a series в вектор занятых серии и номеров паспортов
     void setSeriesOtherUser(QString series);
     //! Установка вектора \a BusySeries в вектор занятых занятых серии и номеров паспортов
-    void setBusySeriesUsers(std::vector<QString> BusySeries);
+    void setBusySeriesUsers(std::vector<QString> &BusySeries);
 
 private slots:
 
