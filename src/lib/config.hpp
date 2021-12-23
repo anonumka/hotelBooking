@@ -13,7 +13,7 @@ namespace config
     //! Название программы
     const char applicationName[] = QT_TRANSLATE_NOOP("Config", "Hotel Booking");
     //! Версия программы
-    const char applicationVersion[] = "20211107";
+    const char applicationVersion[] = "20211223";
     //! Название файла с пользователей
     const QString fileUsers = "users.tnb";
     //! Название файла с комнатами

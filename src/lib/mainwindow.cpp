@@ -373,12 +373,10 @@ void MainWindow::authUser()
 {
     vUsers->at(index).setSelect(false);
     int tmp = authorisation();
-    if (tmp != -1)
-    {
+    if (tmp != -1) {
         index = tmp;
     }
-    else
-    {
+    else {
         role = vUsers->at(index).getRole();
     }
 }
