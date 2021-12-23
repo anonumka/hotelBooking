@@ -400,6 +400,15 @@ bool Database::checkBusyNumOfRoom(int num_)
     return false;
 }
 
+User Database::searchUser(QString series_)
+{
+    for (size_t i = 0; i < vUsers.size(); i++) {
+        if (vUsers[i].getSeries() == series_)
+            return vUsers[i];
+    }
+    return vUsers[0];
+}
+
 void Database::refreshDataRoom(const Room room_, size_t index_)
 {
     int num = vRooms[index_].getNum();

@@ -70,6 +70,8 @@ public:
     void delRoom(size_t);
     //! Функция, обновляющая данные о комнате по индексу
     void refreshDataRoom(const Room, size_t);
+    //! Функция, ищущая пользователя по серию и номера паспорта
+    User searchUser(QString);
 
 private:
     //! Загрузка данных о пользователях в .tnb-файл (двоичный файл)

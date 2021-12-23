@@ -42,7 +42,6 @@ public:
     //! Загрузка значения переменных из потока \a ist
     void load(QDataStream &ist);
 
-
 private:
     //! Номер комнаты
     int num;

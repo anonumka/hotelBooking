@@ -189,8 +189,7 @@ void MainWindow::create_room()
 
 void MainWindow::edit_room()
 {
-    if (!ui->hotelView->selectionModel()->hasSelection())
-    {
+    if (!ui->hotelView->selectionModel()->hasSelection()) {
         QMessageBox::warning(this, config::applicationName, "Выберите комнату в таблице.");
         return;
     }
@@ -259,22 +258,21 @@ void MainWindow::listUsersBookedRoom(size_t& ind)
     QDialog *listbkdroom = new QDialog;
     Ui::Dialog ui_listbkdroom;
     listbkdroom->setFixedSize(452, 327);
-
-    ui_listbkdroom.setupUi(listbkdroom);
     listbkdroom->setWindowTitle(config::applicationName);
-    Room r = vRooms->at(ind);
-    int num = r.getNum();
-    ui_listbkdroom.label->setText(QString("Комната %1").arg(num));
-
     QStandardItemModel *bkrModel = new QStandardItemModel(this);
     bkrModel->setColumnCount(3);
     bkrModel->setHorizontalHeaderLabels(QStringList() << "Фамилия" << "Паспорт"
                                         << "Дата заселения" << "Дата выселения");
+    ui_listbkdroom.setupUi(listbkdroom);
     ui_listbkdroom.tableView->setModel(bkrModel);
     ui_listbkdroom.tableView->horizontalHeader()->setStretchLastSection(true);
     ui_listbkdroom.tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui_listbkdroom.tableView->setSelectionMode(QAbstractItemView::SingleSelection);
     ui_listbkdroom.tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+    Room r = vRooms->at(ind);
+    int num = r.getNum();
+    ui_listbkdroom.label->setText(QString("Комната %1").arg(num));
 
     for (size_t i = 0; i < bkdRoom->size(); ++i)
     {
@@ -282,15 +280,7 @@ void MainWindow::listUsersBookedRoom(size_t& ind)
         {
             QList<QStandardItem *> standardItemsList;
             BookedRoom bkdr = bkdRoom->at(i);
-            User u;
-            for (size_t j = 0; j < vUsers->size(); i++)
-            {
-                if (bkdr.getSeries() == vUsers->at(i).getSeries())
-                {
-                    u = vUsers->at(i);
-                    break;
-                }
-            }
+            User u = db.searchUser(bkdr.getSeries());
             standardItemsList.append(new QStandardItem(u.getSurname()));
             standardItemsList.append(new QStandardItem(bkdr.getSeries()));
             standardItemsList.append(new QStandardItem(bkdr.getDateSettling().toString()));
@@ -298,8 +288,7 @@ void MainWindow::listUsersBookedRoom(size_t& ind)
             bkrModel->insertRow(bkrModel->rowCount(), standardItemsList);
         }
     }
-    if (!(bkrModel->rowCount()))
-    {
+    if (!(bkrModel->rowCount())) {
         QMessageBox::information(this, config::applicationName, "Комната пустая!");
         return;
     }
